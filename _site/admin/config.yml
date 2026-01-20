@@ -7,9 +7,6 @@ backend:
 media_folder: "src/img"
 public_folder: "/img"
 
-# Enable editorial workflow
-publish_mode: editorial_workflow
-
 collections:
   # Posts Collection
   - name: "posts"
@@ -18,7 +15,6 @@ collections:
     create: true
     slug: "{{slug}}"
     identifier_field: "slug"
-    # Use workflow for editorial review
     publish: true
     summary: "{{title}} • {{author}} • {{date}} • {{date_updated}} • {{category}}"
     fields:
@@ -64,9 +60,6 @@ collections:
       # SEO Fields
       - { label: "SEO Title", name: "seo_title", widget: "string", required: false, hint: "Custom title for search engines (defaults to post title)" }
       - { label: "SEO Description", name: "seo_description", widget: "text", required: false, hint: "Meta description for search engines" }
-      
-      # Status (managed by workflow, but visible)
-      - { label: "Status", name: "status", widget: "select", options: ["draft", "in_review", "approved", "published", "archived"], default: "draft", required: true }
 
   # Categories Collection
   - name: "categories"
