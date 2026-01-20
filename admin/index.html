@@ -5,16 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Content Manager</title>
   <link rel="cms-config-url" href="config.yml" type="text/yaml">
+  
   <style>
+    /* ============================================
+       BASE STYLES
+       ============================================ */
     html, body {
       margin: 0;
       padding: 0;
       height: 100%;
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
     }
+    
     #nc-root {
       height: 100vh;
     }
+    
+    /* ============================================
+       LOADING STATE
+       ============================================ */
     .loading {
       display: flex;
       align-items: center;
@@ -22,40 +31,130 @@
       height: 100vh;
       flex-direction: column;
     }
+    
+    /* ============================================
+       ERROR DISPLAY
+       ============================================ */
     .error {
       padding: 20px;
       color: #d32f2f;
       max-width: 600px;
       margin: 0 auto;
     }
+    
     .error pre {
       background: #f5f5f5;
       padding: 10px;
       overflow-x: auto;
       font-size: 12px;
     }
+    
+    /* ============================================
+       TABLE LAYOUT (CSS Grid)
+       ============================================ */
+    /* Main list container - becomes a CSS Grid */
+    .nc-collectionPage-list {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr 1fr; /* 5 columns: Title (wider), Author, Created, Updated, Category */
+      gap: 0;
+      border: 1px solid #e0e0e0;
+      margin: 20px;
+      background-color: white;
+    }
+    
+    /* Each card is a grid row - children become grid cells */
+    .nc-entryListing-card {
+      display: contents; /* Makes children direct grid items */
+    }
+    
+    /* Style existing child elements as table cells */
+    .nc-entryListing-card > * {
+      padding: 12px 16px;
+      border-bottom: 1px solid #e0e0e0;
+      border-right: 1px solid #e0e0e0;
+      display: flex;
+      align-items: center;
+    }
+    
+    .nc-entryListing-card > *:last-child {
+      border-right: none;
+    }
+    
+    /* ============================================
+       TABLE HEADER
+       ============================================ */
+    .nc-table-header {
+      display: contents; /* Header children become grid items */
+    }
+    
+    .nc-table-header > * {
+      background-color: #f5f5f5;
+      padding: 12px 16px;
+      font-weight: 600;
+      border-bottom: 2px solid #e0e0e0;
+      border-right: 1px solid #e0e0e0;
+      display: flex;
+      align-items: center;
+    }
+    
+    .nc-table-header > *:last-child {
+      border-right: none;
+    }
+    
+    /* ============================================
+       INTERACTIVE STATES
+       ============================================ */
+    /* Row hover effect */
+    .nc-entryListing-card:hover > * {
+      background-color: #f9f9f9;
+    }
+    
+    /* Title link styling */
+    .nc-entryListing-card a {
+      color: #0066cc;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    
+    .nc-entryListing-card a:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
+
 <body>
+  <!-- ============================================
+       CMS MOUNT POINT
+       Decap CMS will render into this div
+       ============================================ -->
   <div id="nc-root">
     <div class="loading">
       <p>Loading Decap CMS...</p>
     </div>
   </div>
+
   <script>
-    // Ensure trailing slash for proper routing
+    /* ============================================
+       INITIALIZATION
+       ============================================ */
+    
+    // Ensure URL has trailing slash for proper routing
     if (window.location.pathname !== '/admin/') {
       window.history.replaceState(null, null, '/admin/');
     }
     
-    // Try multiple CDN sources
-    const cdnSources = [
+    /* ============================================
+       CDN CONFIGURATION
+       ============================================ */
+    const CDN_SOURCES = [
       'https://unpkg.com/decap-cms@^3/dist/decap-cms.js',
       'https://cdn.jsdelivr.net/npm/decap-cms@^3/dist/decap-cms.js',
       'https://unpkg.com/decap-cms@3.0.0/dist/decap-cms.js'
     ];
     
-    let currentCDN = 0;
+    /* ============================================
+       DIAGNOSTICS TRACKING
+       ============================================ */
     const diagnostics = {
       scriptLoaded: false,
       cmsObject: null,
@@ -64,6 +163,9 @@
       cdnUsed: null
     };
     
+    /* ============================================
+       SCRIPT LOADING
+       ============================================ */
     function loadScript(src) {
       return new Promise((resolve, reject) => {
         const script = document.createElement('script');
@@ -100,15 +202,17 @@
       });
     }
     
-    // Try loading from CDNs in sequence
+    /* ============================================
+       CDN FALLBACK LOADING
+       ============================================ */
     async function tryLoadCMS() {
-      for (let i = 0; i < cdnSources.length; i++) {
+      for (let i = 0; i < CDN_SOURCES.length; i++) {
         try {
-          await loadScript(cdnSources[i]);
+          await loadScript(CDN_SOURCES[i]);
           break; // Success, stop trying
         } catch (err) {
-          diagnostics.errors.push(`CDN ${i + 1} failed: ${cdnSources[i]}`);
-          if (i === cdnSources.length - 1) {
+          diagnostics.errors.push(`CDN ${i + 1} failed: ${CDN_SOURCES[i]}`);
+          if (i === CDN_SOURCES.length - 1) {
             // All CDNs failed
             showError();
           }
@@ -116,7 +220,9 @@
       }
     }
     
-    // Check config file
+    /* ============================================
+       CONFIG FILE CHECK
+       ============================================ */
     fetch('config.yml')
       .then(r => {
         if (r.ok) {
@@ -132,6 +238,9 @@
         console.error('Config fetch error:', err);
       });
     
+    /* ============================================
+       ERROR DISPLAY
+       ============================================ */
     function showError() {
       const root = document.getElementById('nc-root');
       let errorHTML = '<div class="error"><h1>Decap CMS Failed to Load</h1>';
@@ -164,7 +273,37 @@
       root.innerHTML = errorHTML;
     }
     
-    // Start loading
+    /* ============================================
+       TABLE HEADER CREATION
+       Adds a header row to the list view
+       ============================================ */
+    function addTableHeader() {
+      const listContainer = document.querySelector('.nc-collectionPage-list');
+      if (!listContainer || listContainer.querySelector('.nc-table-header')) {
+        return; // Already has header or container doesn't exist
+      }
+      
+      // Create header row
+      const header = document.createElement('div');
+      header.className = 'nc-table-header';
+      
+      // Create header cells
+      const headerLabels = ['Title', 'Author', 'Created', 'Updated', 'Category'];
+      headerLabels.forEach((label) => {
+        const headerCell = document.createElement('div');
+        headerCell.textContent = label;
+        header.appendChild(headerCell);
+      });
+      
+      // Insert header at the beginning of the list
+      listContainer.insertBefore(header, listContainer.firstChild);
+    }
+    
+    /* ============================================
+       STARTUP SEQUENCE
+       ============================================ */
+    
+    // Start loading CMS
     tryLoadCMS();
     
     // Final check after delay
@@ -180,6 +319,15 @@
           root.querySelector('.loading').remove();
         }
         console.log('CMS should be initializing...');
+        
+        // Watch for CMS to render and add table header
+        const observer = new MutationObserver(() => {
+          addTableHeader();
+        });
+        observer.observe(root, { childList: true, subtree: true });
+        
+        // Try to add header immediately
+        addTableHeader();
       }
     }, 5000);
   </script>

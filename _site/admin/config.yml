@@ -10,30 +10,6 @@ public_folder: "/img"
 publish_mode: editorial_workflow
 
 collections:
-  # Categories Collection
-  - name: "categories"
-    label: "Categories"
-    folder: "src/categories"
-    create: true
-    slug: "{{slug}}"
-    identifier_field: "slug"
-    fields:
-      - { label: "Name", name: "name", widget: "string", required: true }
-      - { label: "Slug", name: "slug", widget: "string", required: true, hint: "URL-friendly version of the name (e.g., 'hvac-systems')" }
-      - { label: "Description", name: "description", widget: "text", required: false }
-
-  # Tags Collection
-  - name: "tags"
-    label: "Tags"
-    folder: "src/tags"
-    create: true
-    slug: "{{slug}}"
-    identifier_field: "slug"
-    fields:
-      - { label: "Name", name: "name", widget: "string", required: true }
-      - { label: "Slug", name: "slug", widget: "string", required: true, hint: "URL-friendly version of the name (e.g., 'maintenance')" }
-      - { label: "Description", name: "description", widget: "text", required: false }
-
   # Posts Collection
   - name: "posts"
     label: "Posts"
@@ -43,6 +19,7 @@ collections:
     identifier_field: "slug"
     # Use workflow for editorial review
     publish: true
+    summary: "{{title}} • {{author}} • {{date}} • {{date_updated}} • {{category}}"
     fields:
       # Basic Information
       - { label: "Title", name: "title", widget: "string", required: true }
@@ -51,6 +28,7 @@ collections:
       
       # Dates
       - { label: "Created Date", name: "date", widget: "datetime", required: true, default: "" }
+      - { label: "Updated Date", name: "date_updated", widget: "datetime", required: false, hint: "Last modification date" }
       - { label: "Publish Date", name: "publish_date", widget: "datetime", required: false, hint: "When to publish this post (can be in the future)" }
       
       # Content
@@ -88,3 +66,35 @@ collections:
       
       # Status (managed by workflow, but visible)
       - { label: "Status", name: "status", widget: "select", options: ["draft", "in_review", "approved", "published", "archived"], default: "draft", required: true }
+
+  # Categories Collection
+  - name: "categories"
+    label: "Categories"
+    folder: "src/categories"
+    create: true
+    slug: "{{slug}}"
+    identifier_field: "slug"
+    summary: "{{name}} • {{author}} • {{date}} • {{date_updated}}"
+    fields:
+      - { label: "Name", name: "name", widget: "string", required: true }
+      - { label: "Slug", name: "slug", widget: "string", required: true, hint: "URL-friendly version of the name (e.g., 'hvac-systems')" }
+      - { label: "Author", name: "author", widget: "string", required: false }
+      - { label: "Created Date", name: "date", widget: "datetime", required: false }
+      - { label: "Updated Date", name: "date_updated", widget: "datetime", required: false, hint: "Last modification date" }
+      - { label: "Description", name: "description", widget: "text", required: false }
+
+  # Tags Collection
+  - name: "tags"
+    label: "Tags"
+    folder: "src/tags"
+    create: true
+    slug: "{{slug}}"
+    identifier_field: "slug"
+    summary: "{{name}} • {{author}} • {{date}} • {{date_updated}}"
+    fields:
+      - { label: "Name", name: "name", widget: "string", required: true }
+      - { label: "Slug", name: "slug", widget: "string", required: true, hint: "URL-friendly version of the name (e.g., 'maintenance')" }
+      - { label: "Author", name: "author", widget: "string", required: false }
+      - { label: "Created Date", name: "date", widget: "datetime", required: false }
+      - { label: "Updated Date", name: "date_updated", widget: "datetime", required: false, hint: "Last modification date" }
+      - { label: "Description", name: "description", widget: "text", required: false }

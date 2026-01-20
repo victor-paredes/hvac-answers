@@ -1,65 +1,61 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HVAC Answers</title>
-</head>
-<body>
-  <h1>HVAC Answers</h1>
+---
+layout: layouts/base.njk
+title: HVAC Answers
+description: Everything you need to know about HVAC Energy Savings, Credits, and Rebates.
+---
 
-  <div class="posts-list">
-    {% for post in collections.publishedPosts %}
-    <article class="post-preview">
-      {% if post.data.featured_image %}
-      <div class="post-image">
-        <a href="{{ post.url }}">
-          <img src="/img/{{ post.data.featured_image }}" alt="{{ post.data.title }}" />
-        </a>
-      </div>
+{% block content %}
+<div class="posts-list">
+  {% for post in collections.publishedPosts %}
+  <article class="post-preview">
+    {% if post.data.featured_image %}
+    <div class="post-image">
+      <a href="{{ post.url }}">
+        <img src="/img/{{ post.data.featured_image }}" alt="{{ post.data.title }}" />
+      </a>
+    </div>
+    {% endif %}
+    test
+    <div class="post-content">
+      <h2><a href="{{ post.url }}">{{ post.data.title }}</a></h2>
+      
+      {% if post.data.excerpt %}
+      <p class="excerpt">{{ post.data.excerpt }}</p>
       {% endif %}
       
-      <div class="post-content">
-        <h2><a href="{{ post.url }}">{{ post.data.title }}</a></h2>
-        
-        {% if post.data.excerpt %}
-        <p class="excerpt">{{ post.data.excerpt }}</p>
+      <div class="post-meta">
+        {% if post.data.author %}
+        <span class="author">By {{ post.data.author }}</span>
         {% endif %}
         
-        <div class="post-meta">
-          {% if post.data.author %}
-          <span class="author">By {{ post.data.author }}</span>
-          {% endif %}
-          
-          {% if post.data.publish_date %}
-          <time datetime="{{ post.data.publish_date }}">{{ post.data.publish_date | formatDate }}</time>
-          {% elif post.data.date %}
-          <time datetime="{{ post.data.date }}">{{ post.data.date | formatDate }}</time>
-          {% endif %}
-          
-          {% if post.data.category %}
-          {% set categoryObj = collections.categories | findCategory(post.data.category) %}
-          {% if categoryObj %}
-          <span class="category">
-            <a href="/categories/{{ categoryObj.data.slug or categoryObj.fileSlug }}/">{{ categoryObj.data.name or categoryObj.fileSlug }}</a>
-          </span>
-          {% endif %}
-          {% endif %}
-          
-          {% if post.data.tags and post.data.tags.length > 0 %}
-          <div class="tags">
-            {% for tagSlug in post.data.tags %}
-              {% set tagObj = collections.tags | findTag(tagSlug) %}
-              {% if tagObj %}
-              <a href="/tags/{{ tagObj.data.slug or tagObj.fileSlug }}/" class="tag">{{ tagObj.data.name or tagObj.fileSlug }}</a>
-              {% endif %}
-            {% endfor %}
-          </div>
-          {% endif %}
+        {% if post.data.publish_date %}
+        <time datetime="{{ post.data.publish_date }}">{{ post.data.publish_date | formatDate }}</time>
+        {% elif post.data.date %}
+        <time datetime="{{ post.data.date }}">{{ post.data.date | formatDate }}</time>
+        {% endif %}
+        
+        {% if post.data.category %}
+        {% set categoryObj = collections.categories | findCategory(post.data.category) %}
+        {% if categoryObj %}
+        <span class="category">
+          <a href="/categories/{{ categoryObj.data.slug or categoryObj.fileSlug }}/">{{ categoryObj.data.name or categoryObj.fileSlug }}</a>
+        </span>
+        {% endif %}
+        {% endif %}
+        
+        {% if post.data.tags and post.data.tags.length > 0 %}
+        <div class="tags">
+          {% for tagSlug in post.data.tags %}
+            {% set tagObj = collections.tags | findTag(tagSlug) %}
+            {% if tagObj %}
+            <a href="/tags/{{ tagObj.data.slug or tagObj.fileSlug }}/" class="tag">{{ tagObj.data.name or tagObj.fileSlug }}</a>
+            {% endif %}
+          {% endfor %}
         </div>
+        {% endif %}
       </div>
-    </article>
-    {% endfor %}
-  </div>
-</body>
-</html>
+    </div>
+  </article>
+  {% endfor %}
+</div>
+{% endblock %}

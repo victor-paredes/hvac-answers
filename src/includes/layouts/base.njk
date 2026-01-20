@@ -1,0 +1,83 @@
+{% set siteName = "HVAC Answers" %}
+{% set siteUrl = "https://hvacanswers.com" %}
+{% set defaultDescription = "Everything you need to know about HVAC Energy Savings, Credits, and Rebates." %}
+{% set defaultOGImage = "/img/hvac-answers-incentives-ira-overview-mobile.jpg" %}
+
+{% set pageTitle = title or "Everything you need to know about HVAC Energy Savings, Credits, and Rebates." %}
+{% set pageDescription = description or seo_description or defaultDescription %}
+{% set ogTitle = og_title or pageTitle %}
+{% set ogDescription = og_description or "Got questions about HVAC upgrades? You could be saving money with your HVAC system purchases." %}
+{% set ogImage = og_image or defaultOGImage %}
+{% set ogUrl = og_url or page.url or siteUrl %}
+{% set pageType = page_type or "https://schema.org/Article" %}
+
+<!doctype html>
+<html lang="en" itemscope itemtype="{{ pageType }}">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="{{ pageDescription }}">
+
+	<meta name="twitter:card" content="{{ twitter_card or 'summary' }}" />
+	<meta property="og:url" content="{{ ogUrl }}">
+	<meta property="og:type" content="{{ og_type or 'website' }}">
+	<meta property="og:title" content="{{ ogTitle }}">
+	<meta property="og:image" content="{{ siteUrl }}{{ ogImage }}">
+	<meta property="og:image:alt" content="{{ ogDescription }}">
+	<meta property="og:description" content="{{ ogDescription }}">
+	<meta property="og:site_name" content="{{ siteName }}">
+	<meta property="og:locale" content="en_US">
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#00a300">
+	<meta name="msapplication-config" content="/browserconfig.xml" />
+	<meta name="msapplication-TileColor" content="#00a300">
+	<meta name="theme-color" content="#ffffff">
+
+	<title>{{ pageTitle }}</title>
+
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+		integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+	<link rel="stylesheet" href="/css/slick-theme.css">
+	<link rel="stylesheet" href="/css/main.css">
+	<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-JNMCE1KQ9P"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag() { dataLayer.push(arguments); }
+		gtag('js', new Date());
+		gtag('config', 'G-JNMCE1KQ9P');
+	</script>
+	<script type="text/javascript">
+		(function (c, l, a, r, i, t, y) {
+			c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments) };
+			t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
+			y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+		})(window, document, "clarity", "script", "tygck2m0dg");
+	</script>
+	
+	{% block head %}{% endblock %}
+</head>
+
+<body>
+
+	{% include "partials/site-header.html" %}
+	{% include "partials/main-menu.html" %}
+
+	{% block content %}{% endblock %}
+
+	{% include "partials/footer-buttons.html" %}
+	{% include "partials/site-footer.html" %}
+
+	{% include "partials/scripts.html" %}
+	
+	{% block scripts %}{% endblock %}
+
+</body>
+
+</html>
