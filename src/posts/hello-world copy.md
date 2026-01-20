@@ -1,7 +1,9 @@
 ---
 title: Hello World
 date: 2026-01-19
-tags: ["posts"]
+category: selecting-a-system
+tags:
+  - posts
 status: published
 ---
 
