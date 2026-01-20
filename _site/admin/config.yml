@@ -2,6 +2,7 @@ backend:
   name: github
   repo: victor-paredes/hvac-answers
   branch: main
+  local_backend: true
 
 media_folder: "src/img"
 public_folder: "/img"
@@ -74,6 +75,9 @@ collections:
     create: true
     slug: "{{slug}}"
     identifier_field: "slug"
+    format: frontmatter
+    extension: md
+    publish: true
     summary: "{{name}} • {{author}} • {{date}} • {{date_updated}}"
     fields:
       - { label: "Name", name: "name", widget: "string", required: true }
@@ -90,6 +94,9 @@ collections:
     create: true
     slug: "{{slug}}"
     identifier_field: "slug"
+    format: frontmatter
+    extension: md
+    publish: true
     summary: "{{name}} • {{author}} • {{date}} • {{date_updated}}"
     fields:
       - { label: "Name", name: "name", widget: "string", required: true }
