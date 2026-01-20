@@ -1,0 +1,8 @@
+---
+title: Hello World
+date: 2026-01-19
+tags: ["posts"]
+status: published
+---
+
+This is the first HVAC Answers post.

@@ -1,0 +1,90 @@
+backend:
+  name: github
+  repo: victor-paredes/hvac-answers
+  branch: main
+
+media_folder: "src/img"
+public_folder: "/img"
+
+# Enable editorial workflow
+publish_mode: editorial_workflow
+
+collections:
+  # Categories Collection
+  - name: "categories"
+    label: "Categories"
+    folder: "src/categories"
+    create: true
+    slug: "{{slug}}"
+    identifier_field: "slug"
+    fields:
+      - { label: "Name", name: "name", widget: "string", required: true }
+      - { label: "Slug", name: "slug", widget: "string", required: true, hint: "URL-friendly version of the name (e.g., 'hvac-systems')" }
+      - { label: "Description", name: "description", widget: "text", required: false }
+
+  # Tags Collection
+  - name: "tags"
+    label: "Tags"
+    folder: "src/tags"
+    create: true
+    slug: "{{slug}}"
+    identifier_field: "slug"
+    fields:
+      - { label: "Name", name: "name", widget: "string", required: true }
+      - { label: "Slug", name: "slug", widget: "string", required: true, hint: "URL-friendly version of the name (e.g., 'maintenance')" }
+      - { label: "Description", name: "description", widget: "text", required: false }
+
+  # Posts Collection
+  - name: "posts"
+    label: "Posts"
+    folder: "src/posts"
+    create: true
+    slug: "{{slug}}"
+    identifier_field: "slug"
+    # Use workflow for editorial review
+    publish: true
+    fields:
+      # Basic Information
+      - { label: "Title", name: "title", widget: "string", required: true }
+      - { label: "Slug", name: "slug", widget: "string", required: false, hint: "Custom URL slug (optional, auto-generated from title if not provided)" }
+      - { label: "Author", name: "author", widget: "string", required: false }
+      
+      # Dates
+      - { label: "Created Date", name: "date", widget: "datetime", required: true, default: "" }
+      - { label: "Publish Date", name: "publish_date", widget: "datetime", required: false, hint: "When to publish this post (can be in the future)" }
+      
+      # Content
+      - { label: "Excerpt", name: "excerpt", widget: "text", required: false, hint: "Short summary of the post" }
+      - { label: "Body", name: "body", widget: "markdown", required: true }
+      
+      # Media
+      - { label: "Featured Image", name: "featured_image", widget: "image", required: false }
+      
+      # Relationships
+      - label: "Category"
+        name: "category"
+        widget: "relation"
+        collection: "categories"
+        value_field: "slug"
+        display_fields: ["name"]
+        search_fields: ["name", "slug"]
+        required: true
+        hint: "Select one category for this post"
+      
+      - label: "Tags"
+        name: "tags"
+        widget: "relation"
+        collection: "tags"
+        value_field: "slug"
+        display_fields: ["name"]
+        search_fields: ["name", "slug"]
+        multiple: true
+        required: false
+        hint: "Select multiple tags for this post"
+      
+      # SEO Fields
+      - { label: "SEO Title", name: "seo_title", widget: "string", required: false, hint: "Custom title for search engines (defaults to post title)" }
+      - { label: "SEO Description", name: "seo_description", widget: "text", required: false, hint: "Meta description for search engines" }
+      
+      # Status (managed by workflow, but visible)
+      - { label: "Status", name: "status", widget: "select", options: ["draft", "in_review", "approved", "published", "archived"], default: "draft", required: true }

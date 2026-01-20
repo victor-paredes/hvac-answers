@@ -1,0 +1,34 @@
+{"location":"admin/index.html:8","message":"Page load started","data":{"timestamp":1768870455793},"timestamp":1768870455793,"sessionId":"debug-session","runId":"run1","hypothesisId":"A"}
+{"location":"admin/index.html:11","message":"JavaScript error caught","data":{"error":"Script error.","filename":"","lineno":0},"timestamp":1768870455960,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"admin/index.html:18","message":"Decap CMS script loaded","data":{"decapExists":false,"decapCmsExists":false},"timestamp":1768870455960,"sessionId":"debug-session","runId":"run1","hypothesisId":"A"}
+{"location":"admin/index.html:48","message":"CMS object not found after script load","data":{},"timestamp":1768870455961,"sessionId":"debug-session","runId":"run1","hypothesisId":"A"}
+{"location":"admin/index.html:66","message":"DOM ready, checking mount point","data":{"rootExists":true},"timestamp":1768870455961,"sessionId":"debug-session","runId":"run1","hypothesisId":"D"}
+{"location":"admin/index.html:69","message":"DOMContentLoaded fired","data":{"cmsReady":false},"timestamp":1768870455962,"sessionId":"debug-session","runId":"run1","hypothesisId":"D"}
+{"location":"admin/index.html:72","message":"Delayed check after 2s","data":{"cmsExists":false,"rootContent":0},"timestamp":1768870457964,"sessionId":"debug-session","runId":"run1","hypothesisId":"D"}
+{"location":"admin/index.html:8","message":"Page load started","data":{"timestamp":1768870461042},"timestamp":1768870461042,"sessionId":"debug-session","runId":"run1","hypothesisId":"A"}
+{"location":"admin/index.html:69","message":"DOMContentLoaded fired","data":{"cmsReady":false},"timestamp":1768870461102,"sessionId":"debug-session","runId":"run1","hypothesisId":"D"}
+{"location":"admin/index.html:48","message":"CMS object not found after script load","data":{},"timestamp":1768870461100,"sessionId":"debug-session","runId":"run1","hypothesisId":"A"}
+{"location":"admin/index.html:66","message":"DOM ready, checking mount point","data":{"rootExists":true},"timestamp":1768870461101,"sessionId":"debug-session","runId":"run1","hypothesisId":"D"}
+{"location":"admin/index.html:11","message":"JavaScript error caught","data":{"error":"Script error.","filename":"","lineno":0},"timestamp":1768870461070,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"admin/index.html:18","message":"Decap CMS script loaded","data":{"decapExists":false,"decapCmsExists":false},"timestamp":1768870461099,"sessionId":"debug-session","runId":"run1","hypothesisId":"A"}
+{"location":"admin/index.html:72","message":"Delayed check after 2s","data":{"cmsExists":false,"rootContent":0},"timestamp":1768870463103,"sessionId":"debug-session","runId":"run1","hypothesisId":"D"}
+{"location":"admin/index.html:8","message":"Page load started","data":{"timestamp":1768870466296},"timestamp":1768870466296,"sessionId":"debug-session","runId":"run1","hypothesisId":"A"}
+{"location":"admin/index.html:66","message":"DOM ready, checking mount point","data":{"rootExists":true},"timestamp":1768870466324,"sessionId":"debug-session","runId":"run1","hypothesisId":"D"}
+{"location":"admin/index.html:11","message":"JavaScript error caught","data":{"error":"Script error.","filename":"","lineno":0},"timestamp":1768870466323,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"admin/index.html:69","message":"DOMContentLoaded fired","data":{"cmsReady":false},"timestamp":1768870466325,"sessionId":"debug-session","runId":"run1","hypothesisId":"D"}
+{"location":"admin/index.html:18","message":"Decap CMS script loaded","data":{"decapExists":false,"decapCmsExists":false},"timestamp":1768870466323,"sessionId":"debug-session","runId":"run1","hypothesisId":"A"}
+{"location":"admin/index.html:48","message":"CMS object not found after script load","data":{},"timestamp":1768870466324,"sessionId":"debug-session","runId":"run1","hypothesisId":"A"}
+{"location":"admin/index.html:8","message":"Page load started","data":{"timestamp":1768870472654},"timestamp":1768870472654,"sessionId":"debug-session","runId":"run1","hypothesisId":"A"}
+{"location":"admin/index.html:66","message":"DOM ready, checking mount point","data":{"rootExists":true},"timestamp":1768870472687,"sessionId":"debug-session","runId":"run1","hypothesisId":"D"}
+{"location":"admin/index.html:11","message":"JavaScript error caught","data":{"error":"Script error.","filename":"","lineno":0},"timestamp":1768870472686,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"admin/index.html:18","message":"Decap CMS script loaded","data":{"decapExists":false,"decapCmsExists":false},"timestamp":1768870472686,"sessionId":"debug-session","runId":"run1","hypothesisId":"A"}
+{"location":"admin/index.html:48","message":"CMS object not found after script load","data":{},"timestamp":1768870472686,"sessionId":"debug-session","runId":"run1","hypothesisId":"A"}
+{"location":"admin/index.html:69","message":"DOMContentLoaded fired","data":{"cmsReady":false},"timestamp":1768870472688,"sessionId":"debug-session","runId":"run1","hypothesisId":"D"}
+{"location":"admin/index.html:72","message":"Delayed check after 2s","data":{"cmsExists":false,"rootContent":0},"timestamp":1768870474690,"sessionId":"debug-session","runId":"run1","hypothesisId":"D"}
+{"location":"admin/index.html:8","message":"Page load started","data":{"timestamp":1768870511025},"timestamp":1768870511025,"sessionId":"debug-session","runId":"run1","hypothesisId":"A"}
+{"location":"admin/index.html:66","message":"DOM ready, checking mount point","data":{"rootExists":true},"timestamp":1768870511056,"sessionId":"debug-session","runId":"run1","hypothesisId":"D"}
+{"location":"admin/index.html:11","message":"JavaScript error caught","data":{"error":"Script error.","filename":"","lineno":0},"timestamp":1768870511055,"sessionId":"debug-session","runId":"run1","hypothesisId":"C"}
+{"location":"admin/index.html:69","message":"DOMContentLoaded fired","data":{"cmsReady":false},"timestamp":1768870511056,"sessionId":"debug-session","runId":"run1","hypothesisId":"D"}
+{"location":"admin/index.html:18","message":"Decap CMS script loaded","data":{"decapExists":false,"decapCmsExists":false},"timestamp":1768870511055,"sessionId":"debug-session","runId":"run1","hypothesisId":"A"}
+{"location":"admin/index.html:48","message":"CMS object not found after script load","data":{},"timestamp":1768870511055,"sessionId":"debug-session","runId":"run1","hypothesisId":"A"}
+{"location":"admin/index.html:72","message":"Delayed check after 2s","data":{"cmsExists":false,"rootContent":0},"timestamp":1768870513058,"sessionId":"debug-session","runId":"run1","hypothesisId":"D"}

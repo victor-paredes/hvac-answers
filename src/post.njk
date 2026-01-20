@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% if seo_title %}{{ seo_title }}{% else %}{{ title }}{% endif %} | HVAC Answers</title>
+  {% if seo_description %}
+  <meta name="description" content="{{ seo_description }}">
+  {% elif excerpt %}
+  <meta name="description" content="{{ excerpt }}">
+  {% endif %}
+</head>
+<body>
+  <article>
+    <header>
+      <h1>{{ title }}</h1>
+      
+      {% if featured_image %}
+      <img src="/img/{{ featured_image }}" alt="{{ title }}" />
+      {% endif %}
+      
+      <div class="post-meta">
+        {% if author %}
+        <span class="author">By {{ author }}</span>
+        {% endif %}
+        
+        {% if publish_date %}
+        <time datetime="{{ publish_date }}">{{ publish_date | formatDate }}</time>
+        {% elif date %}
+        <time datetime="{{ date }}">{{ date | formatDate }}</time>
+        {% endif %}
+        
+        {% if category %}
+        {% set categoryObj = collections.categories | findCategory(category) %}
+        {% if categoryObj %}
+        <span class="category">
+          <a href="/categories/{{ categoryObj.data.slug or categoryObj.fileSlug }}/">{{ categoryObj.data.name or categoryObj.fileSlug }}</a>
+        </span>
+        {% endif %}
+        {% endif %}
+        
+        {% if tags and tags.length > 0 %}
+        <div class="tags">
+          {% for tagSlug in tags %}
+            {% set tagObj = collections.tags | findTag(tagSlug) %}
+            {% if tagObj %}
+            <a href="/tags/{{ tagObj.data.slug or tagObj.fileSlug }}/" class="tag">{{ tagObj.data.name or tagObj.fileSlug }}</a>
+            {% endif %}
+          {% endfor %}
+        </div>
+        {% endif %}
+      </div>
+      
+      {% if excerpt %}
+      <p class="excerpt">{{ excerpt }}</p>
+      {% endif %}
+    </header>
+    
+    <div class="content">
+      {{ content | safe }}
+    </div>
+  </article>
+</body>
+</html>
