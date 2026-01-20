@@ -1,4 +1,20 @@
 module.exports = function (eleventyConfig) {
+    // #region agent log
+    const fs = require('fs');
+    const path = require('path');
+    const logPath = '/Users/vparedes/Documents/Dev/hvac-answers/.cursor/debug.log';
+    const logEntry = {
+      sessionId: 'debug-session',
+      runId: 'run1',
+      hypothesisId: 'A',
+      location: '.eleventy.js:1',
+      message: 'Eleventy config function entry',
+      data: { timestamp: Date.now() },
+      timestamp: Date.now()
+    };
+    fs.appendFileSync(logPath, JSON.stringify(logEntry) + '\n');
+    // #endregion
+    
     eleventyConfig.addPassthroughCopy("src/img");
     eleventyConfig.addPassthroughCopy("admin");
   
@@ -55,11 +71,26 @@ module.exports = function (eleventyConfig) {
       return d.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
     });
   
-    return {
+    // #region agent log
+    const config = {
       dir: {
         input: "src",
-        output: "_site"
+        output: "_site",
+        includes: "includes"
       }
     };
+    const logEntry2 = {
+      sessionId: 'debug-session',
+      runId: 'run1',
+      hypothesisId: 'A',
+      location: '.eleventy.js:58',
+      message: 'Eleventy config return value',
+      data: { config, includesDir: config.dir.includes, defaultIncludes: '_includes' },
+      timestamp: Date.now()
+    };
+    fs.appendFileSync(logPath, JSON.stringify(logEntry2) + '\n');
+    // #endregion
+    
+    return config;
   };
   
